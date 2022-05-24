@@ -7,18 +7,26 @@ function Wizards() {
   const [ wizardsList, setWizardsList ] = useState(allWizards.slice(0, 3))
 
   const handleAgrega = () => {
+
+    // guard clause
+    if (wizardsList.length === allWizards.length) {
+      return;
+    }
+
     // necesitamos un hechicero aleatorio
     // el array es: allWizards // un obj aleatorio 
     const randomNumber = Math.floor(Math.random() * allWizards.length) // 0 - 200
     const randomWizard = allWizards[randomNumber]
-    console.log(randomWizard)
 
-    // const wizardsCopy = [...wizardsList]
-    // wizardsCopy.push(randomWizard)
-
-    // // necesiamos actualizar mi estado
-    // setWizardsList(wizardsCopy)
-    setWizardsList([randomWizard, ...wizardsList])
+    const wizardsId = wizardsList.map((eachWizard) => eachWizard.id)
+    // si el elemento del id ya existe, entonces genero recursividad
+    // si no existe, entonces lo agrego
+    if (wizardsId.includes(randomWizard.id)) {
+      console.log("recursividad porque el elemento esta duplicado",randomWizard.id )
+      handleAgrega()
+    } else {
+      setWizardsList([randomWizard, ...wizardsList])
+    }
   }
 
   const handleOrdenar = () => {
