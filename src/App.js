@@ -1,13 +1,16 @@
 
 import './App.css';
 import Concepts from './pages/Concepts';
+import Wizards from './pages/Wizards';
 
 
 function App() {
   return (
     <div className="App">
 
-      <Concepts />
+      {/* <Concepts /> */}
+
+      <Wizards />
 
     </div>
   );
